@@ -167,6 +167,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "loterieAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "name",
 				"outputs": [
 					{
@@ -195,6 +208,24 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ticket",
+						"type": "uint256"
+					}
+				],
+				"name": "safeMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -513,11 +544,11 @@
 			]
 		},
 		"contracts/Loterie.sol": {
-			"keccak256": "0x5e757c3e144f912ebf9ad381382be9718d8453b045084b83f0473993cfb85a2e",
+			"keccak256": "0xd66c6b3dd9b240c2acb1a26d480ab34e64464ba8118f7b324535cf559dd87521",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://11b7c4c98cb94a21b53d46be7da1c0e441a222a0e84bfc1128d8876c0ed3d9a6",
-				"dweb:/ipfs/QmRV397K7spz2P8KuK9LKVtX1SFTHrfwyRe1nMFQs7VaZ5"
+				"bzz-raw://40917c271a677479401e6f2738c29e096be68c6ed76de8bac1f9b3dea344b9e0",
+				"dweb:/ipfs/QmRZGA34D2TYgx19XtFuxxVs9pqiXky4fsrvP5VWCEXVBF"
 			]
 		}
 	},
