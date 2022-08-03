@@ -44,7 +44,7 @@ contract Loterie is ERC20, Ownable {
     }
 
     // Users Registrer
-    function registrar() internal {
+    function register() internal {
         address personal_contract_address = address(new ticketsNFTs(msg.sender, address(this), nft));
         user_contract[msg.sender] = personal_contract_address;
     }
@@ -52,6 +52,30 @@ contract Loterie is ERC20, Ownable {
     // Info from an User
     function userInfo(address _account) public view returns (address) {
         return user_contract[_account];
+    }
+
+    // Buy Tokens ERC-20
+    function buyTokens(uint256 _numTokens) public payable {
+        // Register user if never buy
+        if(user_contract[msg.sender] == address(0)) {
+            register();
+        } 
+        uint256 tokenCost = tokenPrice(_numTokens);
+        require(msg.value >= tokenCost, "You don't have enough ethers to buy the tokens");
+        uint256 returnValue = msg.value - tokenCost;
+        // Return tokens if is necessary
+        payable(msg.sender).transfer(returnValue);
+        _transfer(address(this), msg.sender, _numTokens);
+    }
+
+    // Cashback Tokens to Smart Contract
+    function cashBackTokens(uint _numTokens) public payable {
+        require(_numTokens >= 0, "The amount must be greater than 0");
+        require(_numTokens <= tokenBalance(msg.sender), "You don't have the tokens to cashback");
+        // The user send the tokens to the Smart Contract
+        _transfer(msg.sender, address(this), _numTokens);
+        // The Smart Contract send the ethers to the user
+        payable(msg.sender).transfer(tokenPrice(_numTokens));
     }
 
 }
