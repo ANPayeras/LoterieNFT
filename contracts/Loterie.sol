@@ -78,6 +78,36 @@ contract Loterie is ERC20, Ownable {
         payable(msg.sender).transfer(tokenPrice(_numTokens));
     }
 
+    // Loterie managment
+    // Ticket price in tokens (ERC-20)
+    uint public ticketPrice = 5;
+    mapping(address => uint []) user_tickets;
+    mapping(uint => address) ADNTicket;
+    uint randomNumber = 0;
+    uint [] buyedTickets;
+
+    function buyTicket(uint _numTickets) public {
+        uint totalPrice = _numTickets * ticketPrice;
+        require(totalPrice <= tokenBalance(msg.sender), "You don't have enough tokens");
+        // Send tokens to the Smart Contract
+        _transfer(msg.sender, address(this), totalPrice);
+
+        for (uint i = 0; i < _numTickets; i++) {
+            // Aleatory number between 0 - 9999
+            uint random = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, randomNumber))) % 10000;
+            randomNumber++;
+            user_tickets[msg.sender].push(random);
+            buyedTickets.push(random);
+            ADNTicket[random] = msg.sender;
+            // Create a new NFT for a ticket
+            ticketsNFTs(user_contract[msg.sender]).mintTicket(msg.sender, random);
+        }
+    }
+
+    function myTickets(address _owner) public view returns(uint [] memory) {
+        return user_tickets[_owner];
+    }
+
 }
 
 contract mainERC721 is ERC721 {
