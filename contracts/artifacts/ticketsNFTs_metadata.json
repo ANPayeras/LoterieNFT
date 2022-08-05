@@ -205,11 +205,11 @@
 			]
 		},
 		"contracts/Loterie.sol": {
-			"keccak256": "0x47c6f7a74df62ff1d97af8577d639a2e4bd3ecfbda4fa66ae0c4c0bf797e686f",
+			"keccak256": "0x265204ba109bb93a99338e57125be3dba4d2101147fbdaa874012af33fa124f1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e434b63f8f02b420780703cc4adad22393d1cb8c59c6d943fc291f078a833434",
-				"dweb:/ipfs/QmT3Ex8BhqHDp6Z5q38E7k31j6avg5CbroVuSsxtDSamAR"
+				"bzz-raw://c9dc6d03432af6ed1bff1854942e4de8993561094cf615601272cb4ce7dd98e6",
+				"dweb:/ipfs/QmXgMXeYARzqKtby8wkoX1ZVeWUEY9LzDBkQMzR9dXgfxj"
 			]
 		}
 	},

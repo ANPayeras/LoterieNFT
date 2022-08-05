@@ -108,6 +108,24 @@ contract Loterie is ERC20, Ownable {
         return user_tickets[_owner];
     }
 
+    function generateWinner() public onlyOwner {
+        uint long = buyedTickets.length;
+        require(long > 0, "There aren't buyed tickets");
+        // Random number between 0 and the total buyed tickets
+        uint random = uint(uint(keccak256(abi.encodePacked(block.timestamp))) % long);
+        // Select the winner ticket, select one postion of the array
+        uint winnerTicket = buyedTickets[random];
+        winner = ADNTicket[winnerTicket];
+        // Send prize to winner
+        payable(winner).transfer(address(this).balance * 95 / 100);
+        // Send the rest to the owner
+        payable(owner()).transfer(address(this).balance);
+    }
+
+    function totalBuyedTickets() public view returns (uint256) {
+        return buyedTickets.length;
+    }
+
 }
 
 contract mainERC721 is ERC721 {
